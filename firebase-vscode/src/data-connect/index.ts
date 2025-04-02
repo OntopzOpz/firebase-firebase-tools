@@ -4,7 +4,7 @@ import { ExtensionBrokerImpl } from "../extension-broker";
 import { registerExecution } from "./execution/execution";
 import { registerExplorer } from "./explorer";
 import { registerAdHoc } from "./ad-hoc-mutations";
-import { DataConnectService as FdcService } from "./service";
+import { DataConnectService as FdcService } from "./DataConnectService";
 import {
   ConfigureSdkCodeLensProvider,
   OperationCodeLensProvider,

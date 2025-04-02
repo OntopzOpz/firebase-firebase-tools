@@ -14,7 +14,7 @@ import {
   print,
 } from "graphql";
 import { upsertFile } from "./file-utils";
-import { DataConnectService } from "./service";
+import { DataConnectService } from "./DataConnectService";
 import { DATA_CONNECT_EVENT_NAME } from "../analytics";
 import { dataConnectConfigs } from "./config";
 import { firstWhereDefined } from "../utils/signal";

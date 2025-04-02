@@ -1,12 +1,13 @@
 import * as vscode from "vscode";
-import { firstWhere, firstWhereDefined } from "../utils/signal";
-import { currentOptions } from "../options";
+import { firstWhereDefined } from "../utils/signal";
 import { dataConnectConfigs } from "./config";
 import { createE2eMockable } from "../utils/test_hooks";
 import { runCommand } from "./terminal";
 import { ExtensionBrokerImpl } from "../extension-broker";
 import { DATA_CONNECT_EVENT_NAME, AnalyticsLogger } from "../analytics";
 import { getSettings } from "../utils/settings";
+import { pickServices } from "./pickServices";
+import { pickConnectors } from "./pickConnectors";
 
 function createDeployOnlyCommand(serviceConnectorMap: {
   [key: string]: string[];
@@ -86,54 +87,3 @@ export function registerFdcDeploy(
   );
 }
 
-async function pickServices(
-  serviceIds: string[],
-): Promise<Array<string> | undefined> {
-  const options = firstWhere(
-    currentOptions,
-    (options) => options.project?.length !== 0,
-  ).then((options) => {
-    return serviceIds.map((serviceId) => {
-      return {
-        label: serviceId,
-        options,
-        picked: true,
-      };
-    });
-  });
-
-  const picked = await vscode.window.showQuickPick(options, {
-    title: "Select services to deploy",
-    canPickMany: true,
-  });
-
-  return picked?.filter((e) => e.picked).map((service) => service.label);
-}
-
-async function pickConnectors(
-  connectorIds: string[] | undefined,
-  serviceId: string,
-): Promise<Array<string> | undefined> {
-  const options = firstWhere(
-    currentOptions,
-    (options) => options.project?.length !== 0,
-  ).then((options) => {
-    return connectorIds?.map((connectorId) => {
-      return {
-        label: connectorId,
-        options,
-        picked: true,
-      };
-    });
-  });
-
-  const picked = await vscode.window.showQuickPick<{
-    picked: boolean;
-    label: string;
-  }>(options as any, {
-    title: `Select connectors to deploy for: ${serviceId}`,
-    canPickMany: true,
-  });
-
-  return picked?.filter((e) => e.picked).map((c) => c.label);
-}

@@ -34,7 +34,7 @@ import {
   visitWithTypeInfo,
 } from "graphql";
 import { camelCase } from "lodash";
-import { DataConnectService } from "./service";
+import { DataConnectService } from "./DataConnectService";
 import { OperationLocation } from "./types";
 import { checkIfFileExists } from "./file-utils";
 import * as path from "path";

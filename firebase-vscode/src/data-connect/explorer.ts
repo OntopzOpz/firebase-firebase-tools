@@ -2,7 +2,7 @@ import vscode, { Disposable, ExtensionContext } from "vscode";
 import { ExtensionBrokerImpl } from "../extension-broker";
 import { ExplorerTreeDataProvider } from "./explorer-provider";
 import { IntrospectionQuery } from "graphql";
-import { DataConnectService } from "./service";
+import { DataConnectService } from "./DataConnectService";
 import { globalSignal } from "../utils/globals";
 
 // explorer store

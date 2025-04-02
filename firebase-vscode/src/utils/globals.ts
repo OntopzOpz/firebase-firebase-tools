@@ -10,6 +10,8 @@ export function resetGlobals() {
 }
 
 export interface GlobalSignal<T> extends Signal<T> {
+  [x: string]: any;
+  value: any;
   reset(): void;
 }
 

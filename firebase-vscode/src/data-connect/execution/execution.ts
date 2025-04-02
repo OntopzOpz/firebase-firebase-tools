@@ -5,7 +5,7 @@ import vscode, {
 } from "vscode";
 import { ExtensionBrokerImpl } from "../../extension-broker";
 import { registerWebview } from "../../webview";
-import { ExecutionHistoryTreeDataProvider } from "./execution-history-provider";
+import { ExecutionHistoryTreeDataProvider } from "./ExecutionHistoryTreeDataProvider";
 import {
   ExecutionItem,
   ExecutionState,
@@ -27,7 +27,7 @@ import {
   Kind,
   TypeNode,
 } from "graphql";
-import { DataConnectService } from "../service";
+import { DataConnectService } from "../DataConnectService";
 import { DataConnectError, toSerializedError } from "../../../common/error";
 import { OperationLocation } from "../types";
 import { InstanceType } from "../code-lens-provider";
